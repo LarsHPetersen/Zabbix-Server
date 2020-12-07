@@ -91,15 +91,31 @@ DBPassword=password
 ### 9. Start Zabbix server and agent processes
 
 ```bash
+# restarts the zabbix-server, zabbix-agent, apache and php service.
 sudo systemctl restart zabbix-server zabbix-agent httpd php-fpm
 
+# enables the zabbix-server, zabbix-agent, apache and php service to start automatically after a reboot.
 sudo systemctl enable zabbix-server zabbix-agent httpd php-fpm
 
+# gets the status of zabbix-server, zabbix-agent, apache and php service.
 sudo systemctl status zabbix-server zabbix-agent httpd php-fpm
 ```
+
 ------
 
-### 10. Configure Zabbix frontend
+### 10. open the firewall
+
+```bash
+# Opens the firewall for the service http.
+sudo firewall-cmd --add-service=http --permanent
+
+# reloads the firewall so the new rules take effect.
+sudo firewall-cmd --reload
+```
+
+------
+
+### 11. Configure Zabbix frontend
 
 Connect to your newly installed Zabbix frontend: http://server_ip_or_name/zabbix
 

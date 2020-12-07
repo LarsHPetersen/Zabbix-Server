@@ -142,14 +142,31 @@ Edit file /etc/zabbix/php-fpm.conf, uncomment and set the right timezone for you
 ### 12. Start Zabbix server and agent processes
 
 ```bash
+# Restarts the zabbix-server, zabbix-agent, nginx and php service.
 sudo systemctl restart zabbix-server zabbix-agent nginx php-fpm
 
+# Enables the zabbix-server, zabbix-agent, nginx and php service to start automatically after a reboot.
 sudo systemctl enable zabbix-server zabbix-agent nginx php-fpm
 
+# Gets the status of zabbix-server, zabbix-agent, apache and php service.
 sudo systemctl status zabbix-server zabbix-agent nginx php-fpm
 ```
+
+------
+
+### 13. open the firewall
+
+```bash
+# Opens the firewall for the service http.
+sudo firewall-cmd --add-service=http --permanent
+
+# reloads the firewall so the new rules take effect.
+sudo firewall-cmd --reload
+```
+
 --------
-### 13. Configure Zabbix frontend
+
+### 14. Configure Zabbix frontend
 
 Connect to your newly installed Zabbix frontend: http://server_ip_or_name
 
