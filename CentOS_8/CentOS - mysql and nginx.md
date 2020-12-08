@@ -6,6 +6,13 @@
 sudo dnf update
 ```
 ------
+
+> Configure Selinux
+
+To configure Selinux for Zabbix see the selinux.md file.
+
+------
+
 ### 2. Install nginx
 
 ```bash

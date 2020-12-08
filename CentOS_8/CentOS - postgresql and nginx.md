@@ -8,6 +8,14 @@ sudo dnf update
 
 ------
 
+> Configure Selinux
+
+To configure Selinux for Zabbix see the selinux.md file.
+
+[selinux.md](selinux.md)
+
+------
+
 ### 2. Install nginx
 
 ```bash
@@ -237,3 +245,9 @@ sudo firewall-cmd --reload
 ### 15. Configure Zabbix frontend
 
 Connect to your newly installed Zabbix frontend: http://server_ip_or_name
+
+--------
+
+### 16. Secure database connection
+
+https://www.zabbix.com/documentation/current/manual/appendix/install/db_encrypt
