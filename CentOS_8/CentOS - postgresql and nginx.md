@@ -12,7 +12,7 @@ sudo dnf update
 
 To configure Selinux for Zabbix see the selinux.md file.
 
-[selinux.md](selinux.md)
+[selinux.md](Selinux.md)
 
 ------
 
