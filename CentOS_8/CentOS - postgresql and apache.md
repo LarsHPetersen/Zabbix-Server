@@ -138,6 +138,8 @@ host    replication     all             ::1/128                 ident
 
 Edit file /etc/zabbix/zabbix_server.conf
 
+Add the password you created for the [zabbix database user](###7.-Create-initial-database).
+
 ```
 DBPassword=password
 ```

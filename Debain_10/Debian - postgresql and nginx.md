@@ -89,6 +89,8 @@ sudo zcat /usr/share/doc/zabbix-server-pgsql*/create.sql.gz | sudo -u zabbix psq
 
 Edit file /etc/zabbix/zabbix_server.conf
 
+Add the password you created for the [zabbix database user](###8.-Create-initial-database).
+
 ```
 DBPassword=password
 ```
@@ -103,6 +105,18 @@ Edit file /etc/zabbix/nginx.conf, uncomment and set 'listen' and 'server_name' d
 # listen 80;
 # server_name example.com;
 ```
+
+------
+
+Edit the /etc/nginx/sites-available/default
+
+```bash
+server {
+listen 8080 default_server;        ## Change from 80 to 8080
+listen [::]:8080 default_server;   ## Change from 80 to 8080 as well
+```
+
+------
 
 Edit file /etc/zabbix/php-fpm.conf, uncomment and set the right timezone for you.
 

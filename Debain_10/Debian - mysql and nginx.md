@@ -17,7 +17,7 @@ sudo apt install nginx
 ### 3. Install mariaDB
 
 ```bash
-sudo apt -y install mariadb-server
+sudo apt install mariadb-server
 
 sudo systemctl enable --now mariadb
 
@@ -67,7 +67,7 @@ sudo apt update
 ### 7. Install Zabbix Server, Zabbix Agent and Zabbix frontend
 
 ```bash
-sudo apt install zabbix-server-mysql zabbix-web-mysql zabbix-nginx-conf zabbix-agent
+sudo apt install zabbix-server-mysql zabbix-frontend-php zabbix-nginx-conf zabbix-agent
 ```
 ------
 ### 8. import initial schema and data to the database.
@@ -80,12 +80,33 @@ sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p 
 
 Edit file /etc/zabbix/zabbix_server.conf
 
+Add the password you created for the [zabbix database user](###5.-Create-initial-database).
+
 ```
 DBPassword=password
 ```
 ------
 
 ### 10. Set timezone
+
+Edit file /etc/zabbix/nginx.conf, uncomment and set 'listen' and 'server_name' directives.
+
+```bash
+# listen 80;
+# server_name example.com;
+```
+
+------
+
+Edit the /etc/nginx/sites-available/default
+
+```bash
+server {
+listen 8080 default_server;        ## Change from 80 to 8080
+listen [::]:8080 default_server;   ## Change from 80 to 8080 as well
+```
+
+------
 
 Edit file /etc/zabbix/php-fpm.conf, uncomment and set the right timezone for you.
 
@@ -98,13 +119,13 @@ Edit file /etc/zabbix/php-fpm.conf, uncomment and set the right timezone for you
 
 ```bash
 # Restarts the zabbix-server, zabbix-agent, nginx and php service.
-sudo systemctl restart zabbix-server zabbix-agent nginx php-fpm
+sudo systemctl restart zabbix-server zabbix-agent nginx php7.3-fpm
 
 # Enables the zabbix-server, zabbix-agent, nginx and php service to start automatically after a reboot.
-sudo systemctl enable zabbix-server zabbix-agent nginx php-fpm
+sudo systemctl enable zabbix-server zabbix-agent nginx php7.3-fpm
 
 # Gets the status of zabbix-server, zabbix-agent, apache and php service.
-sudo systemctl status zabbix-server zabbix-agent nginx php-fpm
+sudo systemctl status zabbix-server zabbix-agent nginx php7.3-fpm
 ```
 
 --------

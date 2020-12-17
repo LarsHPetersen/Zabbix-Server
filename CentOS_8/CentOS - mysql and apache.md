@@ -84,6 +84,8 @@ sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p 
 
 Edit file /etc/zabbix/zabbix_server.conf
 
+Add the password you created for the [zabbix database user](###4.-Create-initial-database).
+
 ```
 DBPassword=password
 ```
