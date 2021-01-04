@@ -13,7 +13,7 @@ sudo apt upgrade
 ### 2. Install mariaDB
 
 ```bash
-sudo apt -y install mariadb-server
+sudo apt install mariadb-server
 
 sudo systemctl enable --now mariadb
 
@@ -47,6 +47,8 @@ Reload privilege tables now? [Y/n]: Y
 mysql -uroot -p
 ```
 
+Replace `password` with the password you want to use.
+
 ```sql
 mysql> create database zabbix character set utf8 collate utf8_bin;
 mysql> create user zabbix@localhost identified by 'password';
@@ -71,7 +73,7 @@ sudo apt update
 ### 6. Install Zabbix Server, Zabbix Agent and Zabbix frontend
 
 ```bash
-sudo apt install zabbix-server-mysql zabbix-web-mysql zabbix-apache-conf zabbix-agent
+sudo apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-agent
 ```
 
 ------
@@ -88,6 +90,8 @@ sudo zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p 
 
 Edit file /etc/zabbix/zabbix_server.conf
 
+Add the password you created for the [zabbix database user](###4.-Create-initial-database).
+
 ```
 DBPassword=password
 ```
@@ -96,13 +100,13 @@ DBPassword=password
 ### 9. Start Zabbix server and agent processes
 
 ```bash
-# restarts the zabbix-server, zabbix-agent, apache and php service.
+# Restarts the zabbix-server, zabbix-agent, apache and php service.
 sudo systemctl restart zabbix-server zabbix-agent apache2
 
-# enables the zabbix-server, zabbix-agent, apache and php service to start automatically after a reboot.
+# Enables the zabbix-server, zabbix-agent, apache and php service to start automatically after a reboot.
 sudo systemctl enable zabbix-server zabbix-agent apache2
 
-# gets the status of zabbix-server, zabbix-agent, apache and php service.
+# Gets the status of zabbix-server, zabbix-agent, apache and php service.
 sudo systemctl status zabbix-server zabbix-agent apache2
 ```
 
