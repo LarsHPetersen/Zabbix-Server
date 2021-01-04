@@ -1,4 +1,4 @@
-# Zabbix Server 5.2 install with Apache and MariaDB on Debian 10
+# Zabbix Server 5.2 install with Apache and MariaDB on Ubuntu 20.04
 
 ### 1. Update the system
 
@@ -59,9 +59,9 @@ mysql> quit;
 ### 5. Install Zabbix repository
 
 ```bash
-wget https://repo.zabbix.com/zabbix/5.2/debian/pool/main/z/zabbix-release/zabbix-release_5.2-1+debian10_all.deb
+wget https://repo.zabbix.com/zabbix/5.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.2-1+ubuntu20.04_all.deb
 
-sudo dpkg -i zabbix-release_5.2-1+debian10_all.deb
+sudo dpkg -i zabbix-release_5.2-1+ubuntu20.04_all.deb
 
 sudo apt update
 ```
