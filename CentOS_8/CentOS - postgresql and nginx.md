@@ -79,7 +79,7 @@ sudo dnf install zabbix-server-pgsql zabbix-web-pgsql zabbix-nginx-conf zabbix-a
 
 ------
 
-### 8. Create initial database
+### Create initial database
 
 ```bash
 # Switch to the postgres user.
@@ -146,7 +146,7 @@ host    replication     all             ::1/128                 ident
 
 Edit file /etc/zabbix/zabbix_server.conf
 
-Add the password you created for the [zabbix database user](###-8.-create-initial-database).
+Add the password you created for the [zabbix database user](###-create-initial-database).
 
 ```
 DBPassword=password
