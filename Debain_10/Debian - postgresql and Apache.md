@@ -82,7 +82,7 @@ sudo zcat /usr/share/doc/zabbix-server-pgsql*/create.sql.gz | sudo -u zabbix psq
 
 Edit file /etc/zabbix/zabbix_server.conf
 
-Add the password you created for the [zabbix database user](###7.-Create-initial-database).
+Add the password you created for the [Zabbix database user](#7-create-initial-database).
 
 ```
 DBPassword=password
