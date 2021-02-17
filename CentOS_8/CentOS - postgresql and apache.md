@@ -1,4 +1,4 @@
-# Zabbix Server 5.2 install with Nginx and PostgreSQL on CentOS 8
+# Zabbix Server 5.2 install with Nginx and PostgreSQL 13 on CentOS 8
 
 ### 1. Update the system
 
@@ -10,29 +10,33 @@ sudo dnf update
 
 ### 2. Install postgresql
 
+[Postgres install official guide](https://www.postgresql.org/download/linux/redhat/)
+
+
 ```bash
-# Install the Postgresql 12 repository
+# Install the Postgresql 13 repository
 sudo rpm -Uvh https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
-dnf clean all
+# clean dnf cache
+sudo dnf clean all
 
-# Disable the pre-installed DBMS module.
+# Disable the built-in PostgreSQL module
 sudo dnf -qy module disable postgresql
 
-# Install the postgresql 12 and postgresql12 server
-sudo dnf install postgresql12 postgresql12-server
+# Install the postgresql 13 and postgresql13 server
+sudo dnf install postgresql13 postgresql13-server
 ```
 
 Initialize the database
 
 ```
-sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
+sudo /usr/pgsql-13/bin/postgresql-13-setup initdb
 ```
 
-start and enable the postgresql-12 service
+start and enable the postgresql-13 service
 
 ```
-sudo systemctl enable --now postgresql-12
+sudo systemctl enable --now postgresql-13
 ```
 
 --------
@@ -96,7 +100,7 @@ sudo zcat /usr/share/doc/zabbix-server-pgsql*/create.sql.gz | sudo -u zabbix psq
 
 ### 9. Change the pg_hba.conf config fil from ident to password.
 
-Change the configuration in `/var/lib/pgsql/12/data/pg_hba.conf` from ident to password.
+Change the configuration in `/var/lib/pgsql/13/data/pg_hba.conf` from ident to password.
 
 Before
 ```bash
@@ -120,11 +124,11 @@ After
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # "local" is for Unix domain socket connections only
-local   all             all                                     password
+local   all             all                                     md5
 # IPv4 local connections:
-host    all             all             0.0.0.0/0               password
+host    all             all             0.0.0.0/0               md5
 # IPv6 local connections:
-host    all             all             ::1/128                 password
+host    all             all             ::1/128                 md5
 # Allow replication connections from localhost, by a user with the
 # replication privilege.
 local   replication     all                                     peer
