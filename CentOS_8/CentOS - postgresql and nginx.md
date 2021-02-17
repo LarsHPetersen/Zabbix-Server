@@ -18,7 +18,7 @@ sudo dnf install nginx
 
 ### 3. Install postgresql
 
-[Postgres install official guide](https://www.postgresql.org/download/linux/redhat/)
+[Postgres official install guide](https://www.postgresql.org/download/linux/redhat/)
 
 ```bash
 # Install the Postgresql 13 repository

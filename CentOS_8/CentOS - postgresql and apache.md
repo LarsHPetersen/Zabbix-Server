@@ -10,7 +10,7 @@ sudo dnf update
 
 ### 2. Install postgresql
 
-[Postgres install official guide](https://www.postgresql.org/download/linux/redhat/)
+[Postgres official install guide](https://www.postgresql.org/download/linux/redhat/)
 
 
 ```bash
