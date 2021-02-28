@@ -1,4 +1,4 @@
-# Zabbix Server 5.2 install with Nginx and PostgreSQL 13 on CentOS 8
+# Zabbix Server 5.2 install with Apache and PostgreSQL 13 on CentOS 8
 
 ### 1. Update the system
 
